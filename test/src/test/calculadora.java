@@ -40,33 +40,44 @@ public class calculadora extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taTotal = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("1º Numero");
 
+        tfNum1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNum1KeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("2º Numero");
 
-        tfNum2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNum2ActionPerformed(evt);
+        tfNum2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNum2KeyTyped(evt);
             }
         });
 
         jLabel3.setText("Total");
 
         jButton2.setText("Limpar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Voltar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         bMultiplicar.setText("*");
         bMultiplicar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bMultiplicarMouseClicked(evt);
-            }
-        });
-        bMultiplicar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bMultiplicarActionPerformed(evt);
             }
         });
 
@@ -78,14 +89,25 @@ public class calculadora extends javax.swing.JFrame {
         });
 
         bSomar.setText("+");
+        bSomar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bSomarMouseClicked(evt);
+            }
+        });
 
         bSubtrair.setText("-");
+        bSubtrair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bSubtrairMouseClicked(evt);
+            }
+        });
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         taTotal.setColumns(20);
         taTotal.setRows(5);
+        taTotal.setFocusable(false);
         jScrollPane2.setViewportView(taTotal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,14 +173,6 @@ public class calculadora extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNum2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNum2ActionPerformed
-
-    private void bMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMultiplicarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bMultiplicarActionPerformed
-
     private void bMultiplicarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMultiplicarMouseClicked
         float num1 = Float.parseFloat(tfNum1.getText());
         float num2 = Float.parseFloat(tfNum2.getText());
@@ -173,6 +187,48 @@ public class calculadora extends javax.swing.JFrame {
         taTotal.setText(Float.toString(total));        // TODO add your handling code here:
     }//GEN-LAST:event_bDividirMouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        limpaCampos();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void bSomarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSomarMouseClicked
+        float num1 = Float.parseFloat(tfNum1.getText());
+        float num2 = Float.parseFloat(tfNum2.getText());
+        float total = num1 + num2;
+        taTotal.setText(Float.toString(total));
+    }//GEN-LAST:event_bSomarMouseClicked
+
+    private void bSubtrairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bSubtrairMouseClicked
+        float num1 = Float.parseFloat(tfNum1.getText());
+        float num2 = Float.parseFloat(tfNum2.getText());
+        float total = num1 - num2;
+        taTotal.setText(Float.toString(total));
+    }//GEN-LAST:event_bSubtrairMouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+       this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void tfNum1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNum1KeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isDigit((c))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNum1KeyTyped
+
+    private void tfNum2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNum2KeyTyped
+        char c = evt.getKeyChar();
+        if(!Character.isDigit((c))){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNum2KeyTyped
+
+    
+    private void limpaCampos(){
+        tfNum1.setText("");
+        tfNum2.setText("");
+        taTotal.setText("");
+    }
     /**
      * @param args the command line arguments
      */
