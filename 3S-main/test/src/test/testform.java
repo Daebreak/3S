@@ -5,8 +5,12 @@
 package test;
 
 import dao.ConexaoBanco;
+import dao.clienteDao;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import javax.swing.table.DefaultTableModel;
+import model.clienteModel;
 
 /**
  *
@@ -50,9 +54,14 @@ public class testform extends javax.swing.JFrame {
         tfEmail = new javax.swing.JTextField();
         cbEstado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb01 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         bCalculadora.setText("Calculadora");
         bCalculadora.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +115,7 @@ public class testform extends javax.swing.JFrame {
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb01.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -117,7 +126,7 @@ public class testform extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb01);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -258,6 +267,24 @@ public class testform extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        clienteDao cliente = new clienteDao();
+        
+        preencheTabela(cliente);
+    }//GEN-LAST:event_formWindowActivated
+
+    private void preencheTabela(clienteDao clienteDao){
+        ArrayList<clienteModel> listaClientes;
+        
+        listaClientes = clienteDao.clienteExibir();
+        
+        DefaultTableModel modeloTabela = (DefaultTableModel) tb01.getModel();
+        
+        for(clienteModel clientes : listaClientes){
+            modeloTabela.addRow(new Object[]{clientes.getNome(), clientes.getRua(), clientes.getBairro(), clientes.getCidadeId()});
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -307,8 +334,8 @@ public class testform extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tb01;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCEP;
     private javax.swing.JTextField tfEmail;

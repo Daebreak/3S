@@ -22,6 +22,11 @@ public class clienteModel {
         return clienteId;
     }
 
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
+    }
+
+    
     public String getNome() {
         return nome;
     }
@@ -61,6 +66,10 @@ public class clienteModel {
     public void setCidadeId(int cidadeId) {
         this.cidadeId = cidadeId;
     }
+    
+    public clienteModel(){
+    }
+    
 
     public clienteModel(String nome, String rua, String bairro, String cep, int cidadeId){
         this.nome = nome;
