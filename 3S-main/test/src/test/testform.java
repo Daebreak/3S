@@ -117,13 +117,10 @@ public class testform extends javax.swing.JFrame {
 
         tb01.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Rua", "Bairro", "CEP", "Cidade"
             }
         ));
         jScrollPane1.setViewportView(tb01);
@@ -281,7 +278,7 @@ public class testform extends javax.swing.JFrame {
         DefaultTableModel modeloTabela = (DefaultTableModel) tb01.getModel();
         
         for(clienteModel clientes : listaClientes){
-            modeloTabela.addRow(new Object[]{clientes.getNome(), clientes.getRua(), clientes.getBairro(), clientes.getCidadeId()});
+            modeloTabela.addRow(new Object[]{clientes.getNome(), clientes.getRua(), clientes.getBairro(), clientes.getCep(),clientes.getCidadeId()});
         }
     }
     

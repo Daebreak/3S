@@ -50,6 +50,7 @@ public class clienteDao {
                     cadastro.setNome(resultadoSentenca.getString("nome"));
                     cadastro.setRua(resultadoSentenca.getString("rua"));
                     cadastro.setBairro(resultadoSentenca.getString("bairro"));
+                    cadastro.setCep(resultadoSentenca.getString("cep"));
                     cadastro.setCidadeId(resultadoSentenca.getInt("cidadeId"));
                     
                     listaClientes.add(cadastro);
